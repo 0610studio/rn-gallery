@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { FlatList, View, ActivityIndicator, Dimensions } from 'react-native';
+import { FlatList, View, ActivityIndicator, Dimensions, Text } from 'react-native';
 import { CameraRoll, PhotoIdentifier } from '@react-native-camera-roll/camera-roll';
 import MediaItem from './ui/MediaItem';
 
@@ -10,6 +10,7 @@ interface CameraRollComponentProps {
     fontFamily?: string;
     width?: number;
     onSelected?: (photoIdentifier: PhotoIdentifier[]) => void;
+    emptyComponent?: React.ReactNode;
 };
 
 const CameraRollComponent = ({
@@ -18,7 +19,8 @@ const CameraRollComponent = ({
     activeColor = '#0000ff99',
     fontFamily,
     width = Dimensions.get('window').width - 40,
-    onSelected
+    onSelected,
+    emptyComponent
 }: CameraRollComponentProps) => {
     const THUMBNAIL_SIZE = (width - 13) / 3;
     const [media, setMedia] = useState<PhotoIdentifier[]>([]);
@@ -50,7 +52,7 @@ const CameraRollComponent = ({
 
     useEffect(() => {
         loadMedia();
-    }, [loadMedia]);
+    }, []);
 
     const handlePress = useCallback((uri: PhotoIdentifier) => {
         setUriList(prev => {
@@ -92,6 +94,10 @@ const CameraRollComponent = ({
                 initialNumToRender={20}
                 maxToRenderPerBatch={10}
                 windowSize={5}
+                ListEmptyComponent={<>
+                    {emptyComponent ? emptyComponent
+                        : <View style={{ padding: 50 }}><Text style={{ color: 'black', textAlign: 'center' }}>앨범이 비었거나, 권한이 없어요.</Text></View>}
+                </>}
             />
         </View>
     );

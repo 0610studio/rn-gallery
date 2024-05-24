@@ -49,6 +49,5 @@
   "license": "MIT",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
-  },
-  "packageManager": "yarn@3.6.4"
+  }
 }
