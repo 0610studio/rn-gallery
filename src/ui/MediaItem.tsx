@@ -25,13 +25,15 @@ const MediaItem = React.memo(({
     const type = item.node.type;
 
     return (
-        <TouchableOpacity style={styles.itemContainer} onPress={() => onPress(item)}>
+        <TouchableOpacity style={styles.itemContainer} onPress={() => onPress(item)} activeOpacity={0.8}>
             <Image source={{ uri }} style={{ width: THUMBNAIL_SIZE, height: THUMBNAIL_SIZE }} resizeMode="cover" />
             <View style={[
                 styles.imageOverlay,
                 { width: THUMBNAIL_SIZE, height: THUMBNAIL_SIZE, borderColor: isActive ? activeColor : 'transparent', backgroundColor: isActive ? '#00000033' : 'transparent' }
             ]}>
-                <Text allowFontScaling={false} style={[styles.typeText, { fontFamily: fontFamily }]}>{type}</Text>
+                <View style={styles.typeBox}>
+                    <Text allowFontScaling={false} style={[styles.typeText, { fontFamily: fontFamily }]}>{type}</Text>
+                </View>
             </View>
 
             {
@@ -52,20 +54,25 @@ const styles = StyleSheet.create({
         position: 'absolute',
         borderWidth: 3,
     },
-    typeText: {
-        textAlign: 'center',
+    typeBox: {
+        justifyContent:'center',
+        alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        color: 'white',
-        borderRadius: 6,
-        fontSize: 8,
+        borderRadius: 10,
         paddingTop: 2,
         paddingBottom: 3,
         paddingHorizontal: 6,
         marginBottom: 1,
         marginRight: 1,
     },
+    typeText: {
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 8,
+    },
     itemContainer: {
         margin: 2,
+        borderRadius: 2,
     },
 });
 

@@ -82,7 +82,7 @@ const CameraRollComponent = ({
     const keyExtractor = useCallback((item: PhotoIdentifier, index: number) => index.toString(), []);
 
     return (
-        <View style={{ width: width }}>
+        <View style={{ width: width, flex: 1 }}>
             <FlatList
                 data={media}
                 renderItem={renderItem}
