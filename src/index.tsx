@@ -11,6 +11,8 @@ interface CameraRollComponentProps {
     width?: number;
     onSelected?: (photoIdentifier: PhotoIdentifier[]) => void;
     emptyComponent?: React.ReactNode;
+    maxLength?: number;
+    maxLengthHandler?: () => void;
 };
 
 const CameraRollComponent = ({
@@ -20,7 +22,9 @@ const CameraRollComponent = ({
     fontFamily,
     width = Dimensions.get('window').width - 40,
     onSelected,
-    emptyComponent
+    emptyComponent,
+    maxLength,
+    maxLengthHandler
 }: CameraRollComponentProps) => {
     const THUMBNAIL_SIZE = (width - 13) / 3;
     const [media, setMedia] = useState<PhotoIdentifier[]>([]);
@@ -60,6 +64,10 @@ const CameraRollComponent = ({
             if (newSet.has(uri)) {
                 newSet.delete(uri);
             } else {
+                if (maxLength && newSet.size >= maxLength) {
+                    maxLengthHandler?.();
+                    return newSet;
+                }
                 newSet.add(uri);
             }
 

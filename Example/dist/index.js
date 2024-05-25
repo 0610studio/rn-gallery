@@ -49,7 +49,7 @@ import { CameraRoll } from '@react-native-camera-roll/camera-roll';
 import MediaItem from './ui/MediaItem';
 ;
 var CameraRollComponent = function (_a) {
-    var assetType = _a.assetType, _b = _a.loadingComponent, loadingComponent = _b === void 0 ? <ActivityIndicator color={'#0000ff'} style={{ padding: 20 }}/> : _b, _c = _a.activeColor, activeColor = _c === void 0 ? '#0000ff99' : _c, fontFamily = _a.fontFamily, _d = _a.width, width = _d === void 0 ? Dimensions.get('window').width - 40 : _d, onSelected = _a.onSelected, emptyComponent = _a.emptyComponent;
+    var assetType = _a.assetType, _b = _a.loadingComponent, loadingComponent = _b === void 0 ? <ActivityIndicator color={'#0000ff'} style={{ padding: 20 }}/> : _b, _c = _a.activeColor, activeColor = _c === void 0 ? '#0000ff99' : _c, fontFamily = _a.fontFamily, _d = _a.width, width = _d === void 0 ? Dimensions.get('window').width - 40 : _d, onSelected = _a.onSelected, emptyComponent = _a.emptyComponent, maxLength = _a.maxLength, maxLengthHandler = _a.maxLengthHandler;
     var THUMBNAIL_SIZE = (width - 13) / 3;
     var _e = useState([]), media = _e[0], setMedia = _e[1];
     var _f = useState(false), loading = _f[0], setLoading = _f[1];
@@ -100,6 +100,10 @@ var CameraRollComponent = function (_a) {
                 newSet.delete(uri);
             }
             else {
+                if (maxLength && newSet.size >= maxLength) {
+                    maxLengthHandler === null || maxLengthHandler === void 0 ? void 0 : maxLengthHandler();
+                    return newSet;
+                }
                 newSet.add(uri);
             }
             if (onSelected) {

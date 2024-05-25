@@ -8,7 +8,9 @@ interface CameraRollComponentProps {
     width?: number;
     onSelected?: (photoIdentifier: PhotoIdentifier[]) => void;
     emptyComponent?: React.ReactNode;
+    maxLength?: number;
+    maxLengthHandler?: () => void;
 }
-declare const CameraRollComponent: ({ assetType, loadingComponent, activeColor, fontFamily, width, onSelected, emptyComponent }: CameraRollComponentProps) => React.JSX.Element;
+declare const CameraRollComponent: ({ assetType, loadingComponent, activeColor, fontFamily, width, onSelected, emptyComponent, maxLength, maxLengthHandler }: CameraRollComponentProps) => React.JSX.Element;
 export default CameraRollComponent;
 //# sourceMappingURL=index.d.ts.map
