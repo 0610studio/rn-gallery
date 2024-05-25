@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, ReactNode } from 'react';
 import { FlatList, View, ActivityIndicator, Dimensions, Text } from 'react-native';
 import { CameraRoll, PhotoIdentifier } from '@react-native-camera-roll/camera-roll';
 import MediaItem from './ui/MediaItem';
@@ -13,6 +13,7 @@ interface CameraRollComponentProps {
     emptyComponent?: React.ReactNode;
     maxCount?: number;
     maxCountHandler?: () => void;
+    footerComponent?: (props: PhotoIdentifier[]) => ReactNode;
 };
 
 const CameraRollComponent = ({
@@ -24,7 +25,8 @@ const CameraRollComponent = ({
     onSelected,
     emptyComponent,
     maxCount,
-    maxCountHandler
+    maxCountHandler,
+    footerComponent
 }: CameraRollComponentProps) => {
     const THUMBNAIL_SIZE = (width - 13) / 3;
     const [media, setMedia] = useState<PhotoIdentifier[]>([]);
@@ -107,6 +109,8 @@ const CameraRollComponent = ({
                         : <View style={{ padding: 50 }}><Text style={{ color: 'black', textAlign: 'center' }}>앨범이 비었거나, 권한이 없어요.</Text></View>}
                 </>}
             />
+
+            {footerComponent && footerComponent(Array.from(uriList))}
         </View>
     );
 };

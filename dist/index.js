@@ -49,7 +49,7 @@ import { CameraRoll } from '@react-native-camera-roll/camera-roll';
 import MediaItem from './ui/MediaItem';
 ;
 var CameraRollComponent = function (_a) {
-    var assetType = _a.assetType, _b = _a.loadingComponent, loadingComponent = _b === void 0 ? <ActivityIndicator color={'#0000ff'} style={{ padding: 20 }}/> : _b, _c = _a.activeColor, activeColor = _c === void 0 ? '#0000ff99' : _c, fontFamily = _a.fontFamily, _d = _a.width, width = _d === void 0 ? Dimensions.get('window').width - 40 : _d, onSelected = _a.onSelected, emptyComponent = _a.emptyComponent, maxCount = _a.maxCount, maxCountHandler = _a.maxCountHandler;
+    var assetType = _a.assetType, _b = _a.loadingComponent, loadingComponent = _b === void 0 ? <ActivityIndicator color={'#0000ff'} style={{ padding: 20 }}/> : _b, _c = _a.activeColor, activeColor = _c === void 0 ? '#0000ff99' : _c, fontFamily = _a.fontFamily, _d = _a.width, width = _d === void 0 ? Dimensions.get('window').width - 40 : _d, onSelected = _a.onSelected, emptyComponent = _a.emptyComponent, maxCount = _a.maxCount, maxCountHandler = _a.maxCountHandler, footerComponent = _a.footerComponent;
     var THUMBNAIL_SIZE = (width - 13) / 3;
     var _e = useState([]), media = _e[0], setMedia = _e[1];
     var _f = useState(false), loading = _f[0], setLoading = _f[1];
@@ -124,6 +124,8 @@ var CameraRollComponent = function (_a) {
                     {emptyComponent ? emptyComponent
                 : <View style={{ padding: 50 }}><Text style={{ color: 'black', textAlign: 'center' }}>앨범이 비었거나, 권한이 없어요.</Text></View>}
                 </>}/>
+
+            {footerComponent && footerComponent(Array.from(uriList))}
         </View>);
 };
 export default CameraRollComponent;
