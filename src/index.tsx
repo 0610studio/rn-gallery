@@ -102,8 +102,8 @@ const CameraRollComponent = ({
                 onEndReachedThreshold={0.5}
                 ListFooterComponent={loading ? <>{loadingComponent}</> : null}
                 initialNumToRender={20}
-                maxToRenderPerBatch={10}
-                windowSize={5}
+                maxToRenderPerBatch={20}
+                windowSize={3}
                 ListEmptyComponent={<>
                     {emptyComponent ? emptyComponent
                         : <View style={{ padding: 50 }}><Text style={{ color: 'black', textAlign: 'center' }}>앨범이 비었거나, 권한이 없어요.</Text></View>}
