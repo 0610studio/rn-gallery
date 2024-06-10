@@ -58,6 +58,14 @@ const CameraRollComponent = ({
 
     useEffect(() => {
         loadMedia();
+
+        return () => {
+            setMedia([]);
+            setCursor(undefined);
+            setHasNextPage(true);
+            setUriList(new Set());
+            setLoading(false);
+        }
     }, []);
 
     const handlePress = useCallback((uri: PhotoIdentifier) => {

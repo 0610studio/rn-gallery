@@ -92,6 +92,13 @@ var CameraRollComponent = function (_a) {
     }); }, [assetType, cursor, hasNextPage, loading]);
     useEffect(function () {
         loadMedia();
+        return function () {
+            setMedia([]);
+            setCursor(undefined);
+            setHasNextPage(true);
+            setUriList(new Set());
+            setLoading(false);
+        };
     }, []);
     var handlePress = useCallback(function (uri) {
         setUriList(function (prev) {
@@ -120,7 +127,7 @@ var CameraRollComponent = function (_a) {
     }, [handlePress, uriList, activeColor]);
     var keyExtractor = useCallback(function (item, index) { return index.toString(); }, []);
     return (<View style={{ width: width, flex: 1 }}>
-            <FlatList data={media} renderItem={renderItem} keyExtractor={keyExtractor} numColumns={3} onEndReached={loadMedia} onEndReachedThreshold={0.5} ListFooterComponent={loading ? <>{loadingComponent}</> : null} initialNumToRender={20} maxToRenderPerBatch={10} windowSize={5} ListEmptyComponent={<>
+            <FlatList data={media} renderItem={renderItem} keyExtractor={keyExtractor} numColumns={3} onEndReached={loadMedia} onEndReachedThreshold={0.5} ListFooterComponent={loading ? <>{loadingComponent}</> : null} initialNumToRender={20} maxToRenderPerBatch={20} windowSize={3} ListEmptyComponent={<>
                     {emptyComponent ? emptyComponent
                 : <View style={{ padding: 50 }}><Text style={{ color: 'black', textAlign: 'center' }}>앨범이 비었거나, 권한이 없어요.</Text></View>}
                 </>}/>
