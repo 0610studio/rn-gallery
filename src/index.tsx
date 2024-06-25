@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useCallback, ReactNode } from 'react';
-import { FlatList, View, ActivityIndicator, Dimensions, Text } from 'react-native';
+import { View, ActivityIndicator, Dimensions, Text } from 'react-native';
 import { CameraRoll, PhotoIdentifier } from '@react-native-camera-roll/camera-roll';
 import MediaItem from './ui/MediaItem';
+import { FlatList } from 'react-native-gesture-handler';
 
 interface CameraRollComponentProps {
     assetType: 'Photos' | 'Videos' | 'All';

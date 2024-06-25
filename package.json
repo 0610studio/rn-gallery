@@ -1,6 +1,6 @@
 {
   "name": "@0610studio/rn-gallery",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,15 +16,17 @@
     "example:install": "cd Example && yarn install && cd ios && pod install"
   },
   "peerDependencies": {
+    "react-native-gesture-handler": ">=2.17.1",
+    "@react-native-camera-roll/camera-roll": ">=7.8.0",
     "react": ">=18.0.0",
-    "react-native": ">=0.70.0",
-    "@react-native-camera-roll/camera-roll": ">=7.8.0"
+    "react-native": ">=0.70.0"
   },
   "devDependencies": {
+    "react-native-gesture-handler": "^2.17.1",
+    "@react-native-camera-roll/camera-roll": "^7.8.0",
     "@react-native/babel-preset": "*",
     "@react-native/metro-config": "*",
     "@react-native/typescript-config": "*",
-    "@react-native-camera-roll/camera-roll": "^7.8.0",
     "@types/react": "*",
     "@types/react-native": "*",
     "@typescript-eslint/eslint-plugin": "*",
